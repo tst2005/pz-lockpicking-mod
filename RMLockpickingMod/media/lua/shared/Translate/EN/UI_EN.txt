@@ -1,0 +1,17 @@
+UI_EN = {
+	UI_trait_nimblefingers = "Nimble Fingers",
+	UI_Text_locklevel_veryeasy = "Very Easy",
+	UI_Text_locklevel_easy = "Easy",
+	UI_Text_locklevel_medium = "Average",
+	UI_Text_locklevel_hard = "Hard",
+	UI_Text_locklevel_veryhard = "Very Hard",
+	UI_Text_locklevel_willbreak = "Broken",
+	UI_Text_brokenLockModal = "You can't pick a broken lock.",
+	UI_Text_contextBreakDoorLock = "Break Lock",
+	UI_Text_contextPickDoorLock = "Pick Lock",
+	UI_Text_contextBreakWindowLock = "Break Lock",
+	UI_Text_traitNimbleFingers = "Nimble Fingers",
+	UI_Text_traitNimbleFingersDescription = "Years of experience with opening all kinds of locks.\nFaster lockpicking. Better chances for opening a lock.",
+	UI_Text_professionBurglar = "Burglar",
+	UI_Text_BobbyStuck = "Damn it! The bobby pin is stuck!"
+}
