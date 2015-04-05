@@ -7,5 +7,7 @@ http://theindiestone.com/forums/index.php/topic/33-lockpicking-mod-v100/
 The mod can be fully translated to any other language, for that you just need to edit file in /media/lua/shared/Translate
   and change whateever you want or create a new language definition.
   
-  # And what more ?
-  BobbyPin can be crafted with PaperClip
+  
+  
+# And what more ?
+BobbyPin can now be crafted with PaperClip
