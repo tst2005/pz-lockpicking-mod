@@ -2,6 +2,8 @@
 
 A Lockpicking Mod for [Project Zomboid](http://projectzomboid.com/) which allows you to quickly open locked doors.
 
+![preview](https://raw.githubusercontent.com/cyberbobjr/pz-lockpicking-mod/develop/poster.png)
+
 ## Overview
 
 - Extended Burglar Profession
