@@ -11,7 +11,7 @@ UI_EN = {
     UI_Text_contextPickDoorLock = "Pick Lock",
     UI_Text_contextBreakWindowLock = "Break Lock",
     UI_Text_traitNimbleFingers = "Nimble Fingers",
-    UI_Text_traitNimbleFingersDescription = "Years of experience with opening all kinds of locks.\nFaster lockpicking. Better chances for opening a lock.",
+    UI_Text_traitNimbleFingersDescription = "Years of experience with opening all kinds of locks.<LINE>Faster lockpicking. Better chances for opening a lock.",
     UI_Text_professionBurglar = "Burglar",
     UI_Text_BobbyStuck = "Damn it! The bobby pin is stuck!"
 }

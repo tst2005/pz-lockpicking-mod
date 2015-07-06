@@ -11,7 +11,7 @@ UI_FR = {
     UI_Text_contextPickDoorLock = "Crocheter la serrure",
     UI_Text_contextBreakWindowLock = "Casser la serrure",
     UI_Text_traitNimbleFingers = "Doigts agiles",
-    UI_Text_traitNimbleFingersDescription = "Des années d'expérience à ouvrir toutes sortes de serrures.\nCrochetage plus rapide. Chance accrue de crocheter une serrure.",
+    UI_Text_traitNimbleFingersDescription = "Des années d'expérience à ouvrir toutes sortes de serrures.<LINE>Crochetage plus rapide. Chance accrue de crocheter une serrure.",
     UI_Text_professionBurglar = "Cambrioleur",
     UI_Text_BobbyStuck = "Bon sang! L'épingle à cheveux est coincée !"
 }
