@@ -1,10 +1,4 @@
 require('TimedActions/ISBaseTimedAction');
-
--- ------------------------------------------------
--- Local Variables
--- ------------------------------------------------
-
--- Access the mod utils.
 require('luautils');
 
 -- ------------------------------------------------

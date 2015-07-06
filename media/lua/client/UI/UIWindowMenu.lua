@@ -1,4 +1,4 @@
-require('luautils')
+require('luautils');
 
 -- ------------------------------------------------
 -- Local Functions
