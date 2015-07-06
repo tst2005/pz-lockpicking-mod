@@ -9,7 +9,3 @@ Lockpicking_Text.contextBreakWindowLock = getText("UI_Text_contextBreakWindowLoc
 Lockpicking_Text.traitNimbleFingers = getText("UI_Text_traitNimbleFingers");
 Lockpicking_Text.traitNimbleFingersDescription = getText("UI_Text_traitNimbleFingersDescription");
 Lockpicking_Text.professionBurglar = getText("UI_Text_professionBurglar");
-
---==================================================================================================
--- Created 15.07.13 - 17:13                                                                        =
---==================================================================================================

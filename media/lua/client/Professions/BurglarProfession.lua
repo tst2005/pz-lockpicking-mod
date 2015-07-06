@@ -171,7 +171,3 @@ Events.OnGameBoot.Add(initTraits);
 Events.OnGameBoot.Add(initProfessions);
 Events.OnGameBoot.Add(initSpawnPoints);
 Events.OnGameBoot.Add(initClothing);
-
---==================================================================================================
--- Created 23.09.13 - 12:35                                                                        =
---==================================================================================================
