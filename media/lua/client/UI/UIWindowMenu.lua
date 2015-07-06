@@ -1,4 +1,3 @@
--- Access the mod utils.
 require('luautils')
 
 -- ------------------------------------------------
@@ -7,11 +6,9 @@ require('luautils')
 
 ---
 -- Checks if the window is valid for opening.
--- @param _window - The window to check.
+-- @param window - The window to check.
 --
-local function isValidWindow(_window)
-    local window = _window;
-
+local function isValidWindow(window)
     if window == nil then
         return false;
     elseif window:IsOpen() then
@@ -36,15 +33,12 @@ end
 ---
 -- Walks to the window, equips the item and then performs the
 -- timed action to break open the window's lock.
--- @param _worldobjects - List of all clicked objects.
--- @param _window - The window to break open.
--- @param _player - The burglar.
+-- @param worldobjects - List of all clicked objects.
+-- @param window - The window to break open.
+-- @param player - The burglar.
 --
-local function forceWindow(_worldobjects, _window, _player)
+local function forceWindow(worldobjects, window, player)
     local time = 25;
-    local player = _player;
-    local window = _window;
-
     if luautils.walkToObject(player, window) then
         local storePrim = luautils.equipItems(player, "Base.Crowbar");
         ISTimedActionQueue.add(TABreakWindowLock:new(player, window, time, storePrim));
@@ -53,15 +47,15 @@ end
 
 ---
 -- Creates a new context menu entry for windows.
--- @param _player - The player that clicks on the window.
--- @param _context - The context menu to work with.
--- @param _worldobjects - A table containing all clicked objects.
+-- @param player - The player that clicks on the window.
+-- @param context - The context menu to work with.
+-- @param worldobjects - A table containing all clicked objects.
 --
-local function createMenuEntries(_player, _context, _worldobjects)
+local function createMenuEntries(player, context, worldobjects)
     local window;
 
     -- Checks if the player has clicked on a window
-    for _, object in ipairs(_worldobjects) do
+    for _, object in ipairs(worldobjects) do
         if instanceof(object, "IsoWindow") then
             window = object;
             break;
@@ -74,9 +68,8 @@ local function createMenuEntries(_player, _context, _worldobjects)
     end
 
     -- Create the context menus.
-    local player = getSpecificPlayer(_player);
+    local player = getSpecificPlayer(player);
     local inventory = player:getInventory();
-    local context = _context;
 
     -- Breaking the lock
     if inventory:contains("Crowbar") then
@@ -85,7 +78,7 @@ local function createMenuEntries(_player, _context, _worldobjects)
         if not prim or prim:getCondition() <= 0 then
             print("No valid crowbar");
         else
-            context:addOption(Lockpicking_Text.contextBreakWindowLock, _worldobjects, forceWindow, window, player);
+            context:addOption(Lockpicking_Text.contextBreakWindowLock, worldobjects, forceWindow, window, player);
         end
     end
 end

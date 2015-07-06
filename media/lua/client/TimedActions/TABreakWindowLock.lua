@@ -92,16 +92,16 @@ end
 ---
 -- Constructor
 --
-function TABreakWindowLock:new(_player, _window, _time, _storePrim)
+function TABreakWindowLock:new(player, window, time, storePrim)
     local o = {};
     setmetatable(o, self);
     self.__index = self;
-    o.character = _player;
-    o.object = _window;
-    o.storedPrim = _storePrim;
+    o.character = player;
+    o.object = window;
+    o.storedPrim = storePrim;
     o.stopOnWalk = false;
     o.stopOnRun = false;
-    o.maxTime = _time;
+    o.maxTime = time;
     return o;
 end
 

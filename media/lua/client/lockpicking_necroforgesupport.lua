@@ -1,4 +1,4 @@
-require "NecroList"
+require('NecroList');
 
 Events.OnGameStart.Add( function ()
     print ("Adding Lockpicking items to NecroForge");

@@ -84,17 +84,17 @@ end
 ---
 -- Constructor
 --
-function TABreakDoorLock:new(_character, _object, _time, _primItem, _scndItem)
+function TABreakDoorLock:new(character, object, time, primItem, scndItem)
     local o = {};
     setmetatable(o, self);
     self.__index = self;
-    o.character = _character;
-    o.object = _object;
-    o.storedPrim = _primItem;
-    o.storedScnd = _scndItem;
+    o.character = character;
+    o.object = object;
+    o.storedPrim = primItem;
+    o.storedScnd = scndItem;
     o.stopOnWalk = false;
     o.stopOnRun = false;
-    o.maxTime = _time;
+    o.maxTime = time;
     return o;
 end
 

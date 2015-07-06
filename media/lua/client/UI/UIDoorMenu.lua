@@ -57,12 +57,11 @@ local function breakLock(worldObjects, door, player)
 end
 
 ---
--- @param _worldObjects
--- @param _door
--- @param _player
+-- @param worldObjects
+-- @param door
+-- @param player
 --
-local function pickLock(_worldObjects, _door, _player)
-    local door = _door;
+local function pickLock(worldObjects, door, player)
     local modData = door:getModData();
 
     -- If the lock is broken, we display a modal and end the function here.
@@ -71,7 +70,6 @@ local function pickLock(_worldObjects, _door, _player)
         return;
     end
 
-    local player = _player;
     local time = 150 + (modData.lockLevel + 1) * 10 + ZombRand(75);
 
     -- Traits affect the length of the lockpicking.
@@ -94,16 +92,16 @@ end
 -- Creates the context menu entries for lockpicking and
 -- lockbreaking. If the selected door doesn't have a lockLevel
 -- yet it assigns a random one to it.
--- @param _player - The player who clicked the door.
--- @param _context - The context menu.
--- @param _worldObjects - A list of clicked items.
+-- @param player - The player who clicked the door.
+-- @param context - The context menu.
+-- @param worldObjects - A list of clicked items.
 --
-local function createMenuEntries(_player, _context, _worldObjects)
+local function createMenuEntries(player, context, worldObjects)
     local door;
     local modData;
 
     -- Search through the table of clicked items.
-    for _, object in ipairs(_worldObjects) do
+    for _, object in ipairs(worldObjects) do
         -- Look if the clicked item is of type door.
         if instanceof(object, "IsoDoor") or (instanceof(object, "IsoThumpable") and object:isDoor()) then
             door = object;
@@ -126,9 +124,8 @@ local function createMenuEntries(_player, _context, _worldObjects)
         end
     end
 
-    local player = getSpecificPlayer(_player);
+    local player = getSpecificPlayer(player);
     local inventory = player:getInventory();
-    local context = _context;
 
     -- Add context option for breaking the lock.
     if inventory:contains("Crowbar") then
@@ -137,7 +134,7 @@ local function createMenuEntries(_player, _context, _worldObjects)
         if not primItem or primItem:getCondition() <= 0 then
             print("No valid crowbar");
         else
-            context:addOption(Lockpicking_Text.contextBreakDoorLock .. " (" .. Lockpicking_Text.lockLevels[modData.lockLevel] .. ")", _worldObjects, breakLock, door, player);
+            context:addOption(Lockpicking_Text.contextBreakDoorLock .. " (" .. Lockpicking_Text.lockLevels[modData.lockLevel] .. ")", worldObjects, breakLock, door, player);
         end
     end
 
@@ -149,7 +146,7 @@ local function createMenuEntries(_player, _context, _worldObjects)
         if not primItem or primItem:getCondition() <= 0 or not scndItem or scndItem:getCondition() <= 0 then
             print("No valid screwdriver / bobby pin");
         else
-            context:addOption(Lockpicking_Text.contextPickDoorLock .. " (" .. Lockpicking_Text.lockLevels[modData.lockLevel] .. ")", _worldObjects, pickLock, door, player);
+            context:addOption(Lockpicking_Text.contextPickDoorLock .. " (" .. Lockpicking_Text.lockLevels[modData.lockLevel] .. ")", worldObjects, pickLock, door, player);
         end
     end
 end

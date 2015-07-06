@@ -101,24 +101,24 @@ end
 ---
 -- Constructor
 --
--- @param _character - The player to pick the lock.
--- @param _object - The door to pick.
--- @param _time - The time it takes to pick the lock.
--- @param _storedPrimItem - The primary item that was equipped before starting the TA.
--- @param _storedScndItem - The secondary item that was equipped before starting the TA.
+-- @param character - The player to pick the lock.
+-- @param object - The door to pick.
+-- @param time - The time it takes to pick the lock.
+-- @param storedPrimItem - The primary item that was equipped before starting the TA.
+-- @param storedScndItem - The secondary item that was equipped before starting the TA.
 --
-function TAPickDoorLock:new(_character, _object, _time, _storedPrimItem, _storedScndItem)
+function TAPickDoorLock:new(character, object, time, storedPrimItem, storedScndItem)
     local o = {};
     setmetatable(o, self);
     self.__index = self;
-    o.character = _character;
-    o.object = _object;
-    o.storedPrim = _storedPrimItem;
-    o.storedScnd = _storedScndItem;
+    o.character = character;
+    o.object = object;
+    o.storedPrim = storedPrimItem;
+    o.storedScnd = storedScndItem;
     o.sound = nil;
     o.stopOnWalk = true;
     o.stopOnRun = true;
-    o.maxTime = _time;
+    o.maxTime = time;
     o.sound = nil;
     return o;
 end
