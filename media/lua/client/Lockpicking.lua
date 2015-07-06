@@ -34,19 +34,19 @@ local debugItems = false;
 -- Add some items to the player's inventory for testing purposes.
 --
 local function giveItems()
-	if debugItems then
-		local player = getSpecificPlayer(0);
-		player:getInventory():AddItem("Base.Crowbar");
-		local cr = player:getInventory():AddItem("Base.Crowbar");
-		cr:setCondition(0);
-		player:getInventory():AddItem("Base.Screwdriver");
-		local sc = player:getInventory():AddItem("Base.Screwdriver");
-		sc:setCondition(0);
-		player:getInventory():AddItem("Lockpicking.BobbyPin");
-		player:getInventory():AddItem("Lockpicking.BobbyPin2");
+    if debugItems then
+        local player = getSpecificPlayer(0);
+        player:getInventory():AddItem("Base.Crowbar");
+        local cr = player:getInventory():AddItem("Base.Crowbar");
+        cr:setCondition(0);
+        player:getInventory():AddItem("Base.Screwdriver");
+        local sc = player:getInventory():AddItem("Base.Screwdriver");
+        sc:setCondition(0);
+        player:getInventory():AddItem("Lockpicking.BobbyPin");
+        player:getInventory():AddItem("Lockpicking.BobbyPin2");
 
-		player:getInventory():AddItem("Base.Paperclip");
-	end
+        player:getInventory():AddItem("Base.Paperclip");
+    end
 end
 
 -- ------------------------------------------------

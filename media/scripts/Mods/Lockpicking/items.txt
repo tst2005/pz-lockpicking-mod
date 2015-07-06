@@ -20,13 +20,12 @@ module Lockpicking
         DisplayName                 =   Bobby Pin,
         Icon                        =   nk_BobbyPin,
     }
-	
-	recipe Create Bobby Pin
-        {
-			Paperclip,
 
-			Result:BobbyPin=1,
-			Time:5.0,
-			OnCreate:putInBox_OnCreate,
-        }
+    recipe Create Bobby Pin
+    {
+        Paperclip,
+        Result:BobbyPin=1,
+        Time:5.0,
+        OnCreate:putInBox_OnCreate,
+    }
 }

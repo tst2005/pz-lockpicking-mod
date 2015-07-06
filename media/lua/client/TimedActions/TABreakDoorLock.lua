@@ -44,13 +44,13 @@ TABreakDoorLock = ISBaseTimedAction:derive("TABreakDoorLock");
 -- is still valid.
 --
 function TABreakDoorLock:isValid()
-	local prim = self.character:getPrimaryHandItem();
+    local prim = self.character:getPrimaryHandItem();
 
-	if prim:getName() == Translator.getDisplayItemName("Crowbar") then
-		return true;
-	else
-		return false;
-	end
+    if prim:getName() == Translator.getDisplayItemName("Crowbar") then
+        return true;
+    else
+        return false;
+    end
 end
 
 ---
@@ -58,66 +58,66 @@ end
 -- used items.
 --
 function TABreakDoorLock:stop()
-	luautils.equipItems(self.character, self.storedPrim, self.storedScnd);
-	ISBaseTimedAction.stop(self);
+    luautils.equipItems(self.character, self.storedPrim, self.storedScnd);
+    ISBaseTimedAction.stop(self);
 end
 
 ---
 -- Is called when the time has passed.
 --
 function TABreakDoorLock:perform()
-	local door = self.object;
-	local tile = door:getSquare();
-	local player = self.character;
-	local item = player:getPrimaryHandItem();
-	local chance;
+    local door = self.object;
+    local tile = door:getSquare();
+    local player = self.character;
+    local item = player:getPrimaryHandItem();
+    local chance;
 
-	if player:HasTrait("nimblefingers") then
-		chance = 12;
-	else
-		chance = 8;
-	end
+    if player:HasTrait("nimblefingers") then
+        chance = 12;
+    else
+        chance = 8;
+    end
 
-	-- Check if breaking the lock is successful.
-	if ZombRand(chance) == 0 then
-		-- Play world sound and add an attraction point for that sound to the world.
-		getSoundManager():PlayWorldSound("sledgehammer", false, tile, 0, 20, 30, true);
-		addSound(door, tile:getX(), tile:getY(), tile:getZ(), 15, 30);
-	else
-		-- Play world sound and add an attraction point for that sound to the world.
-		getSoundManager():PlayWorldSound("crackwood", false, tile, 0, 10, 30, true);
-		addSound(door, tile:getX(), tile:getY(), tile:getZ(), 10, 30);
+    -- Check if breaking the lock is successful.
+    if ZombRand(chance) == 0 then
+        -- Play world sound and add an attraction point for that sound to the world.
+        getSoundManager():PlayWorldSound("sledgehammer", false, tile, 0, 20, 30, true);
+        addSound(door, tile:getX(), tile:getY(), tile:getZ(), 15, 30);
+    else
+        -- Play world sound and add an attraction point for that sound to the world.
+        getSoundManager():PlayWorldSound("crackwood", false, tile, 0, 10, 30, true);
+        addSound(door, tile:getX(), tile:getY(), tile:getZ(), 10, 30);
 
-		-- Open the door (silent).
-		door:ToggleDoorSilent();
-	end
+        -- Open the door (silent).
+        door:ToggleDoorSilent();
+    end
 
-	-- Damage weapon and update player stats.
-	luautils.weaponLowerCondition(item, player, false);
-	player:getStats():setEndurance(player:getStats():getEndurance() + 0.7);
+    -- Damage weapon and update player stats.
+    luautils.weaponLowerCondition(item, player, false);
+    player:getStats():setEndurance(player:getStats():getEndurance() + 0.7);
 
-	-- Re-equip the previous items after completing the action.
-	luautils.equipItems(self.character, self.storedPrim, self.storedScnd);
+    -- Re-equip the previous items after completing the action.
+    luautils.equipItems(self.character, self.storedPrim, self.storedScnd);
 
-	-- Remove Timed Action from stack.
-	ISBaseTimedAction.perform(self);
+    -- Remove Timed Action from stack.
+    ISBaseTimedAction.perform(self);
 end
 
 ---
 -- Constructor
 --
 function TABreakDoorLock:new(_character, _object, _time, _primItem, _scndItem)
-	local o = {};
-	setmetatable(o, self);
-	self.__index = self;
-	o.character = _character;
-	o.object = _object;
-	o.storedPrim = _primItem;
-	o.storedScnd = _scndItem;
-	o.stopOnWalk = false;
-	o.stopOnRun = false;
-	o.maxTime = _time;
-	return o;
+    local o = {};
+    setmetatable(o, self);
+    self.__index = self;
+    o.character = _character;
+    o.object = _object;
+    o.storedPrim = _primItem;
+    o.storedScnd = _scndItem;
+    o.stopOnWalk = false;
+    o.stopOnRun = false;
+    o.maxTime = _time;
+    return o;
 end
 
 --==================================================================================================
