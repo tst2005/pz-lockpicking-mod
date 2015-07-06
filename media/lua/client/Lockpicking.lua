@@ -44,7 +44,7 @@ local function giveItems()
 		sc:setCondition(0);
 		player:getInventory():AddItem("Lockpicking.BobbyPin");
 		player:getInventory():AddItem("Lockpicking.BobbyPin2");
-		
+
 		player:getInventory():AddItem("Base.Paperclip");
 	end
 end
