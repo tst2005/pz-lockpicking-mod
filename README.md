@@ -34,3 +34,7 @@ The mod has already been translated to a bunch of different languages. If you wa
 Adding new languages is quite easy. Just take a look at the ```media/lua/shared/Translate``` folder in this mod.
 
 For more information about translations check the [official forums](http://theindiestone.com/forums/index.php/forum/56-).
+
+## Credits
+
+Textures by nasKo, Kjulo & Thuztor
