@@ -1,4 +1,8 @@
-name=Lockpicking Mod (1.0.0)
+name=Lockpicking Mod
 poster=poster.png
 description=Lockpicking Mod by RoboMat, Textures by nasKo, Thuztor & Kjulo
 url=http://theindiestone.com/forums/index.php/topic/33-
+
+modversion=1.5.0
+pzversion=32.16
+versionurl=https://raw.githubusercontent.com/cyberbobjr/pz-lockpicking-mod/master/mod.info
