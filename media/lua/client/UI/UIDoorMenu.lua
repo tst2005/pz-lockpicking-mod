@@ -18,9 +18,6 @@ local function isValidDoor(door)
         return false;
     elseif not door:getBarricade() == 0 then
         return false;
-    --elseif not door:getSquare():getProperties():Is(IsoFlagType.exterior) then
-        --print("Door is inside of house.");
-        --return false;
     else
         return true;
     end
