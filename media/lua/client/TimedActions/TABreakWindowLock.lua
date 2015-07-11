@@ -8,7 +8,54 @@ require('luautils');
 TABreakWindowLock = ISBaseTimedAction:derive("TABreakWindowLock");
 
 -- ------------------------------------------------
--- Functions
+-- Constants
+-- ------------------------------------------------
+
+local BASE_CHANCE = 8;
+local NOISE_SUCCESS = 8;
+local NOISE_FAILURE = 12;
+
+-- ------------------------------------------------
+-- Local Functions
+-- ------------------------------------------------
+
+---
+-- This function modifies the chance of breaking the lock successfully.
+-- The higher the chance value, the higher is the chance of success.
+-- @param - The player trying to break the lock.
+--
+local function calculateChance(player)
+    local chance = BASE_CHANCE;
+    if player:HasTrait('nimblefingers') then
+        chance = chance + 1;
+    end
+    if player:HasTrait('Lucky') then
+        chance = chance + 2;
+    elseif player:HasTrait('Unlucky') then
+        chance = chance - 2;
+    end
+    return chance;
+end
+
+---
+-- This function calculates a noise modifer based on the player's traits.
+-- @param - The player trying to break the lock.
+--
+local function calculateNoiseModifier(player)
+    local noiseModifier = 0;
+    if player:HasTrait('nimblefingers') then
+        noiseModifier = noiseModifier - 3;
+    end
+    if player:HasTrait('Clumsy') then
+        noiseModifier = noiseModifier + 5;
+    elseif player:HasTrait('Graceful') then
+        noiseModifier = noiseModifier - 5;
+    end
+    return noiseModifier;
+end
+
+-- ------------------------------------------------
+-- Public Functions
 -- ------------------------------------------------
 
 ---
@@ -40,13 +87,8 @@ function TABreakWindowLock:perform()
     local window = self.object;
     local player = self.character;
     local weapon = player:getPrimaryHandItem();
-    local chance;
-
-    if player:HasTrait("nimblefingers") then
-        chance = 14;
-    else
-        chance = 12;
-    end
+    local chance = calculateChance(player);
+    local noiseModifier = calculateNoiseModifier(player);
 
     if ZombRand(chance) == 0 then
         -- We store the original door damage in a temporary variable.
@@ -58,11 +100,11 @@ function TABreakWindowLock:perform()
         weapon:setDoorDamage(temp);
 
         -- Add sound to the world so zombies get attracted.
-        addSound(window, window:getSquare():getX(), window:getSquare():getY(), window:getSquare():getZ(), 12, 20);
+        addSound(window, window:getSquare():getX(), window:getSquare():getY(), window:getSquare():getZ(), NOISE_FAILURE + noiseModifier, 20);
     else
         -- Play custom mod-sound.
         getSoundManager():PlayWorldSound("rm_forceWindow2", false, window:getSquare(), 0, 10, 20, true);
-        addSound(window, window:getSquare():getX(), window:getSquare():getY(), window:getSquare():getZ(), 8, 20);
+        addSound(window, window:getSquare():getX(), window:getSquare():getY(), window:getSquare():getZ(), NOISE_SUCCESS + noiseModifier, 20);
 
         -- Unlock window & open it.
         window:setIsLocked(false);

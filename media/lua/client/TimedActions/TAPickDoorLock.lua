@@ -8,7 +8,41 @@ require('luautils');
 TAPickDoorLock = ISBaseTimedAction:derive("TAPickDoorLock");
 
 -- ------------------------------------------------
--- Functions
+-- Constants
+-- ------------------------------------------------
+
+local BASE_CHANCE = 16;
+
+-- ------------------------------------------------
+-- Local Functions
+-- ------------------------------------------------
+
+---
+-- This function modifies the chance of picking the lock successfully.
+-- The higher the chance value, the higher is the chance of success.
+-- @param - The player trying to break the lock.
+-- @param - The lock difficulty.
+--
+local function calculateChance(player, lockLevel)
+    local chance = BASE_CHANCE - lockLevel;
+    if player:HasTrait('nimblefingers') then
+        chance = chance + 4;
+    end
+    if player:HasTrait('KeenHearing') then
+        chance = chance + 2;
+    elseif player:HasTrait('HardOfHearing') then
+        chance = chance - 2;
+    end
+    if player:HasTrait('Lucky') then
+        chance = chance + 2;
+    elseif player:HasTrait('Unlucky') then
+        chance = chance - 3;
+    end
+    return chance;
+end
+
+-- ------------------------------------------------
+-- Public Functions
 -- ------------------------------------------------
 
 ---
@@ -55,14 +89,7 @@ function TAPickDoorLock:perform()
     local scnd = player:getSecondaryHandItem();
     local door = self.object;
     local modData = door:getModData();
-    local chance;
-
-    -- Burglar Trait affects chances of successfully picking the lock.
-    if player:HasTrait("nimblefingers") then
-        chance = 16 - modData.lockLevel;
-    else
-        chance = 12 - modData.lockLevel;
-    end
+    local chance = calculateChance(player, modData.lockLevel);
 
     -- Calculate the chance for successfully picking the lock
     if ZombRand(chance) == 0 then
@@ -79,7 +106,7 @@ function TAPickDoorLock:perform()
     -- Damage the items based on the conditionLowerChance.
     luautils.weaponLowerCondition(prim, player, true);
 
-    if ZombRand(15) == 0 then
+    if ZombRand(chance) == 0 then
         player:Say(getText("UI_Text_BobbyStuck"));
         player:setSecondaryHandItem(nil); -- Remove Item from hand.
         scnd:getContainer():Remove(scnd); -- Remove Item from inventory.

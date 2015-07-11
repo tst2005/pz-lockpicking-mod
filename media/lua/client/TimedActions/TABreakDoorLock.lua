@@ -8,6 +8,53 @@ require('luautils');
 TABreakDoorLock = ISBaseTimedAction:derive("TABreakDoorLock");
 
 -- ------------------------------------------------
+-- Constants
+-- ------------------------------------------------
+
+local BASE_CHANCE = 8;
+local NOISE_SUCCESS = 10;
+local NOISE_FAILURE = 15;
+
+-- ------------------------------------------------
+-- Local Functions
+-- ------------------------------------------------
+
+---
+-- This function modifies the chance of breaking the lock successfully.
+-- The higher the chance value, the higher is the chance of success.
+-- @param - The player trying to break the lock.
+--
+local function calculateChance(player)
+    local chance = BASE_CHANCE;
+    if player:HasTrait('nimblefingers') then
+        chance = chance + 1;
+    end
+    if player:HasTrait('Lucky') then
+        chance = chance + 2;
+    elseif player:HasTrait('Unlucky') then
+        chance = chance - 2;
+    end
+    return chance;
+end
+
+---
+-- This function calculates a noise modifer based on the player's traits.
+-- @param - The player trying to break the lock.
+--
+local function calculateNoiseModifier(player)
+    local noiseModifier = 0;
+    if player:HasTrait('nimblefingers') then
+        noiseModifier = noiseModifier - 3;
+    end
+    if player:HasTrait('Clumsy') then
+        noiseModifier = noiseModifier + 5;
+    elseif player:HasTrait('Graceful') then
+        noiseModifier = noiseModifier - 5;
+    end
+    return noiseModifier;
+end
+
+-- ------------------------------------------------
 -- Functions
 -- ------------------------------------------------
 
@@ -42,23 +89,18 @@ function TABreakDoorLock:perform()
     local tile = door:getSquare();
     local player = self.character;
     local item = player:getPrimaryHandItem();
-    local chance;
-
-    if player:HasTrait("nimblefingers") then
-        chance = 12;
-    else
-        chance = 8;
-    end
+    local chance = calculateChance(player);
+    local noiseModifier = calculateNoiseModifier(player);
 
     -- Check if breaking the lock is successful.
     if ZombRand(chance) == 0 then
         -- Play world sound and add an attraction point for that sound to the world.
         getSoundManager():PlayWorldSound("sledgehammer", false, tile, 0, 20, 30, true);
-        addSound(door, tile:getX(), tile:getY(), tile:getZ(), 15, 30);
+        addSound(door, tile:getX(), tile:getY(), tile:getZ(), NOISE_FAILURE + noiseModifier, 30);
     else
         -- Play world sound and add an attraction point for that sound to the world.
         getSoundManager():PlayWorldSound("crackwood", false, tile, 0, 10, 30, true);
-        addSound(door, tile:getX(), tile:getY(), tile:getZ(), 10, 30);
+        addSound(door, tile:getX(), tile:getY(), tile:getZ(), NOISE_SUCCESS + noiseModifier, 30);
 
         -- Open the door (silent).
         door:ToggleDoorSilent();
