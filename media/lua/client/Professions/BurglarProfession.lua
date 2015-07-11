@@ -1,5 +1,4 @@
 require('NPCs/MainCreationMethods');
-require('NPCs/ProfessionClothing');
 
 -- ------------------------------------------------
 -- Functions
@@ -34,52 +33,9 @@ local function initProfessions()
         burglar:setDescription(origBurgler:getDescription().." <LINE> "..getText("UI_trait_nimblefingers").." <LINE> "..getText("UI_trait_nightowl"));
 end
 
----
--- Set custom clothing and clothing colors for this
--- profession.
---
-local function initClothing()
-    local clothes = {
-        male = {
-            topPal = "Shirt_White",
-            top = "Shirt",
-            bottomPal = "Trousers_White",
-            bottom = "Trousers",
-            topCol = {
-                r = 0.1,
-                g = 0.1,
-                b = 0.1,
-            },
-            bottomCol = {
-                r = 0.1,
-                g = 0.1,
-                b = 0.1,
-            },
-        },
-        female = {
-            topPal = "Shirt_White",
-            top = "Shirt",
-            bottomPal = "Trousers_White",
-            bottom = "Trousers",
-            topCol = {
-                r = 0.1,
-                g = 0.1,
-                b = 0.1,
-            },
-            bottomCol = {
-                r = 0.1,
-                g = 0.1,
-                b = 0.1,
-            },
-        },
-    }
-    ProfessionClothing.rm_Burglar = clothes;
-end
-
 -- ------------------------------------------------
 -- Game Hooks
 -- ------------------------------------------------
 
 Events.OnGameBoot.Add(initTraits);
 Events.OnGameBoot.Add(initProfessions);
-Events.OnGameBoot.Add(initClothing);
