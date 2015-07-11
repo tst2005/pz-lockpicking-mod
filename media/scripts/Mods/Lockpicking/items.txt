@@ -1,0 +1,26 @@
+module Lockpicking
+{
+    item BobbyPin
+    {
+        Weight                      =   0.1,
+        Type                        =   Normal,
+        DisplayName                 =   Bobby Pin,
+        Icon                        =   tz_BobbyPin,
+    }
+
+    item BobbyPin2
+    {
+        Weight                      =   0.1,
+        Type                        =   Normal,
+        DisplayName                 =   Bobby Pin,
+        Icon                        =   nk_BobbyPin,
+    }
+
+    recipe Create Bobby Pin
+    {
+        Paperclip,
+        Result:BobbyPin=1,
+        Time:5.0,
+        OnCreate:putInBox_OnCreate,
+    }
+}
