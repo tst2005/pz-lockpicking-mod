@@ -9,7 +9,7 @@ require('luautils');
 -- @param window - The window to check.
 --
 local function isValidWindow(window)
-    if window == nil then
+    if not window then
         return false;
     elseif window:IsOpen() then
         return false;
