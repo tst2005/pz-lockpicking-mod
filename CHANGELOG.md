@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.6.1
+
+- Make use of mod id
+
 ### Version 1.6.0
 - Vanilla traits influence outcome and chances of the lockpicking / lockbreaking Actions ([Closes #4](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/4))
     - "Clumsy" and "Graceful" will affect the noise of lockbreaking
