@@ -51,14 +51,10 @@ end
 --
 function TAPickDoorLock:isValid()
     local player = self.character;
-    local prim = player:getPrimaryHandItem();
-    local scnd = player:getSecondaryHandItem();
+    local prim = player:getPrimaryHandItem():getName();
+    local scnd = player:getSecondaryHandItem():getName();
 
-    if prim:getName() == Translator.getDisplayItemName("Screwdriver") and scnd:getName() == Translator.getDisplayItemName("Bobby Pin") then
-        return true;
-    else
-        return false;
-    end
+    return prim == Translator.getDisplayItemName("Screwdriver") and scnd == Translator.getDisplayItemName("Bobby Pin");
 end
 
 ---
