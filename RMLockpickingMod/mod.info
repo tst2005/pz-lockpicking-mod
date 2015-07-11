@@ -1,8 +1,9 @@
 name=Lockpicking Mod
+id=RMLockpickingMod
 poster=poster.png
 description=A Lockpicking Mod for quickly opening locked doors and windows.
 url=http://theindiestone.com/forums/index.php/topic/33-
 
-modversion=1.6.0
+modversion=1.6.1
 pzversion=32.16
-versionurl=https://raw.githubusercontent.com/cyberbobjr/pz-lockpicking-mod/master/mod.info
+versionurl=https://raw.githubusercontent.com/cyberbobjr/pz-lockpicking-mod/master/RMLockpickingMod/mod.info

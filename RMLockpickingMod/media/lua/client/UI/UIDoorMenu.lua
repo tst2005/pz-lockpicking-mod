@@ -107,7 +107,7 @@ local function createMenuEntries(player, context, worldObjects)
     end
 
     -- Test if we have a valid door to open.
-    if isValidDoor(door) == false then
+    if not isValidDoor(door) then
         print("No valid door to open.");
         return false;
     else
