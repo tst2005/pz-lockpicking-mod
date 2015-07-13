@@ -69,7 +69,7 @@ end
 --
 function TAPickDoorLock:stop()
     if self.sound then
-        getSoundManager():StopSound(self.sound);
+        self.sound:stop();
     end
 
     luautils.equipItems(self.character, self.storedPrim, self.storedScnd);
