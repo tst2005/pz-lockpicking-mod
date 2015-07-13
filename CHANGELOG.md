@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.7.1
+
+- Fixed [#8](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/8) - Reduce amount of false positives for doors inside of houses
+
 ### Version 1.7.0
 
 - Player's panic levels now affect the lockpicking success ([Closes #6](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/6))
