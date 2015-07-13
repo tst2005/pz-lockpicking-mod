@@ -129,8 +129,8 @@ function TABreakWindowLock:new(player, window, time, storePrim)
     o.character = player;
     o.object = window;
     o.storedPrim = storePrim;
-    o.stopOnWalk = false;
-    o.stopOnRun = false;
+    o.stopOnWalk = true;
+    o.stopOnRun = true;
     o.maxTime = time;
     return o;
 end

@@ -122,8 +122,8 @@ function TABreakDoorLock:new(character, object, time, primItem, scndItem)
     o.object = object;
     o.storedPrim = primItem;
     o.storedScnd = scndItem;
-    o.stopOnWalk = false;
-    o.stopOnRun = false;
+    o.stopOnWalk = true;
+    o.stopOnRun = true;
     o.maxTime = time;
     return o;
 end
