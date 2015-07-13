@@ -9,18 +9,11 @@ require('luautils');
 -- @param door - The door to check.
 -- @return - False if it is open, barricaded or not locked.
 --
-local function isValidDoor(door)
-    if not door then
-        return false;
-    elseif door:IsOpen() then
-        return false;
-    elseif not door:isLocked() then
-        return false;
-    elseif not door:getBarricade() == 0 then
-        return false;
-    else
-        return true;
-    end
+local function isValidDoor(door, character)
+    return door and not door:IsOpen()
+            and door:isLocked()
+            and door:getBarricade() == 0
+            and door:isExteriorDoor(character);
 end
 
 ---
@@ -106,8 +99,10 @@ local function createMenuEntries(player, context, worldObjects)
         end
     end
 
+    local player = getSpecificPlayer(player);
+
     -- Test if we have a valid door to open.
-    if not isValidDoor(door) then
+    if not isValidDoor(door, player) then
         print("No valid door to open.");
         return false;
     else
@@ -121,7 +116,6 @@ local function createMenuEntries(player, context, worldObjects)
         end
     end
 
-    local player = getSpecificPlayer(player);
     local inventory = player:getInventory();
 
     -- Add context option for breaking the lock.
