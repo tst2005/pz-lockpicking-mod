@@ -11,7 +11,7 @@ TAPickDoorLock = ISBaseTimedAction:derive("TAPickDoorLock");
 -- Constants
 -- ------------------------------------------------
 
-local BASE_CHANCE = 16;
+local BASE_CHANCE = 14;
 
 -- ------------------------------------------------
 -- Local Functions
@@ -25,6 +25,12 @@ local BASE_CHANCE = 16;
 --
 local function calculateChance(player, lockLevel)
     local chance = BASE_CHANCE - lockLevel;
+
+    -- Calculate the panic modifier. Panic in PZ is stored as a float ranging
+    -- from 0 to 100. We devide it by ten and then round it to have a "integer".
+    local panicModifier = math.floor((player:getStats():getPanic() / 10) + 0.5);
+    chance = chance - panicModifier;
+
     if player:HasTrait('nimblefingers') then
         chance = chance + 4;
     end
@@ -38,7 +44,8 @@ local function calculateChance(player, lockLevel)
     elseif player:HasTrait('Unlucky') then
         chance = chance - 3;
     end
-    return chance;
+
+    return math.max(2, chance);
 end
 
 -- ------------------------------------------------
@@ -62,7 +69,7 @@ end
 --
 function TAPickDoorLock:stop()
     if self.sound then
-        getSoundManager():StopSound(self.sound);
+        self.sound:stop();
     end
 
     luautils.equipItems(self.character, self.storedPrim, self.storedScnd);
@@ -86,6 +93,8 @@ function TAPickDoorLock:perform()
     local door = self.object;
     local modData = door:getModData();
     local chance = calculateChance(player, modData.lockLevel);
+
+    self.sound:stop();
 
     -- Calculate the chance for successfully picking the lock
     if ZombRand(chance) == 0 then
@@ -132,10 +141,8 @@ function TAPickDoorLock:new(character, object, time, storedPrimItem, storedScndI
     o.object = object;
     o.storedPrim = storedPrimItem;
     o.storedScnd = storedScndItem;
-    o.sound = nil;
     o.stopOnWalk = true;
     o.stopOnRun = true;
     o.maxTime = time;
-    o.sound = nil;
     return o;
 end

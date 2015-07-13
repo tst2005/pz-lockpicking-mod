@@ -1,10 +1,18 @@
 # Changelog
 
+### Version 1.7.0
+
+- Player's panic levels now affect the lockpicking success ([Closes #6](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/6))
+- Reduced the base chance for successfully picking a lock
+- Fixed [#3](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/3) - Lockpicking sound is now stopped correctly when the timed action Stops
+- Fixed [#7](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/7) - Timed Actions for breaking door and window locks now stop when the player walks or runs
+
 ### Version 1.6.1
 
 - Make use of mod id
 
 ### Version 1.6.0
+
 - Vanilla traits influence outcome and chances of the lockpicking / lockbreaking Actions ([Closes #4](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/4))
     - "Clumsy" and "Graceful" will affect the noise of lockbreaking
     - "Lucky" and "Unlucky" will generally affect all random elements
