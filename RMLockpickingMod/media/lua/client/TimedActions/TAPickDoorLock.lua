@@ -11,7 +11,7 @@ TAPickDoorLock = ISBaseTimedAction:derive("TAPickDoorLock");
 -- Constants
 -- ------------------------------------------------
 
-local BASE_CHANCE = 16;
+local BASE_CHANCE = 14;
 
 -- ------------------------------------------------
 -- Local Functions
