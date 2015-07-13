@@ -139,10 +139,8 @@ function TAPickDoorLock:new(character, object, time, storedPrimItem, storedScndI
     o.object = object;
     o.storedPrim = storedPrimItem;
     o.storedScnd = storedScndItem;
-    o.sound = nil;
     o.stopOnWalk = true;
     o.stopOnRun = true;
     o.maxTime = time;
-    o.sound = nil;
     return o;
 end
