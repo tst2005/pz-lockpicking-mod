@@ -94,6 +94,8 @@ function TAPickDoorLock:perform()
     local modData = door:getModData();
     local chance = calculateChance(player, modData.lockLevel);
 
+    self.sound:stop();
+
     -- Calculate the chance for successfully picking the lock
     if ZombRand(chance) == 0 then
         -- Save "broken lock" state in ModData
