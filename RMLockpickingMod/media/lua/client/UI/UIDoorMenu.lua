@@ -10,7 +10,7 @@ require('luautils');
 -- @return - False if it is open, barricaded or not locked.
 --
 local function isValidDoor(door, character)
-    return door and not door:IsOpen()
+    return not door:IsOpen()
             and door:isLocked()
             and door:getBarricade() == 0
             and door:isExteriorDoor(character);
@@ -98,6 +98,9 @@ local function createMenuEntries(player, context, worldObjects)
             break;
         end
     end
+
+    -- Exit early if we have no door.
+    if not door then return end
 
     local player = getSpecificPlayer(player);
 
