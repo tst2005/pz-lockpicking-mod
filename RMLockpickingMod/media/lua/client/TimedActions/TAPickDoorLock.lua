@@ -25,6 +25,12 @@ local BASE_CHANCE = 16;
 --
 local function calculateChance(player, lockLevel)
     local chance = BASE_CHANCE - lockLevel;
+
+    -- Calculate the panic modifier. Panic in PZ is stored as a float ranging
+    -- from 0 to 100. We devide it by ten and then round it to have a "integer".
+    local panicModifier = math.floor((player:getStats():getPanic() / 10) + 0.5);
+    chance = chance - panicModifier;
+
     if player:HasTrait('nimblefingers') then
         chance = chance + 4;
     end
@@ -38,7 +44,8 @@ local function calculateChance(player, lockLevel)
     elseif player:HasTrait('Unlucky') then
         chance = chance - 3;
     end
-    return chance;
+
+    return math.max(2, chance);
 end
 
 -- ------------------------------------------------
