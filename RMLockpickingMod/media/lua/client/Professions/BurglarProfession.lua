@@ -1,6 +1,29 @@
 require('NPCs/MainCreationMethods');
 
 -- ------------------------------------------------
+-- Constants
+-- ------------------------------------------------
+
+local REGION_MULDRAUGH_ID = 'Muldraugh, KY';
+local REGION_MULDRAUGH_SPAWNS = {
+    { worldX = 35, worldY = 34, posX = 134, posY = 208 }, -- Prison Cell
+    { worldX = 35, worldY = 32, posX = 129, posY =  87 }, -- Knox Bank
+    { worldX = 35, worldY = 32, posX = 183, posY =  64 }, -- House
+    { worldX = 36, worldY = 33, posX = 121, posY = 232 }, -- House
+    { worldX = 36, worldY = 33, posX =  65, posY = 258 }, -- Shack
+    { worldX = 36, worldY = 34, posX =  13, posY = 162 }, -- Small house
+    { worldX = 35, worldY = 35, posX = 266, posY =  46 }, -- Bar
+    { worldX = 35, worldY = 35, posX = 175, posY = 116 }, -- Gas 2 Go
+};
+
+local REGION_WESTPOINT_ID = 'West Point, KY';
+local REGION_WESTPOINT_SPAWNS = {
+    { worldX = 39, worldY = 23, posX = 138, posY = 100 }, -- Nice house
+    { worldX = 39, worldY = 23, posX =  93, posY =  93 }, -- Small shack
+    { worldX = 40, worldY = 23, posX =  69, posY = 243 }, -- Fossoil
+};
+
+-- ------------------------------------------------
 -- Functions
 -- ------------------------------------------------
 
@@ -33,9 +56,25 @@ local function initProfessions()
         burglar:setDescription(origBurgler:getDescription().." <LINE> "..getText("UI_trait_nimblefingers").." <LINE> "..getText("UI_trait_nightowl"));
 end
 
+---
+-- Adds custom spawnpoints for Muldraugh and West Point.
+-- @param regions - The vanilla spawns.
+function OnSpawnRegionsLoaded(regions)
+    for i = 1, #regions do
+        if regions[i].name == REGION_MULDRAUGH_ID then
+            print('Injecting custom spawnpoints for the burglar profession in ' .. REGION_MULDRAUGH_ID);
+            regions[i].points["burglar"] = REGION_MULDRAUGH_SPAWNS;
+        elseif regions[i].name == REGION_WESTPOINT_ID then
+            print('Injecting custom spawnpoints for the burglar profession in ' .. REGION_WESTPOINT_ID);
+            regions[i].points["burglar"] = REGION_WESTPOINT_SPAWNS;
+        end
+    end
+end
+
 -- ------------------------------------------------
 -- Game Hooks
 -- ------------------------------------------------
 
 Events.OnGameBoot.Add(initTraits);
 Events.OnGameBoot.Add(initProfessions);
+Events.OnSpawnRegionsLoaded.Add(OnSpawnRegionsLoaded);
