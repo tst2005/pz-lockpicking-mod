@@ -4,6 +4,8 @@ require('NPCs/MainCreationMethods');
 -- Constants
 -- ------------------------------------------------
 
+local BURGLAR_ID = 'burglar';
+
 local REGION_MULDRAUGH_ID = 'Muldraugh, KY';
 local REGION_MULDRAUGH_SPAWNS = {
     { worldX = 35, worldY = 34, posX = 134, posY = 208 }, -- Prison Cell
@@ -43,9 +45,9 @@ local function initProfessions()
     --Wouldn't have been an issue if setIconPath also did the Java logic to reload the texture, but it doesn't so
     --this is the ugly workaround for that. Should still be update proof should the original Burlar change.
 
-    local origBurgler = ProfessionFactory.getProfession("burglar");
+    local origBurgler = ProfessionFactory.getProfession(BURGLAR_ID);
 
-    local burglar = ProfessionFactory.addProfession("burglar", getText("UI_prof_Burglar"), "Prof_nk_Burglar", origBurgler:getCost()-2);
+        local burglar = ProfessionFactory.addProfession(BURGLAR_ID, getText("UI_prof_Burglar"), "Prof_nk_Burglar", origBurgler:getCost()-2);
         for k,v in pairs(transformIntoKahluaTable(origBurgler:getXPBoostMap())) do
             burglar:addXPBoost(k, v);
         end
@@ -63,10 +65,10 @@ function OnSpawnRegionsLoaded(regions)
     for i = 1, #regions do
         if regions[i].name == REGION_MULDRAUGH_ID then
             print('Injecting custom spawnpoints for the burglar profession in ' .. REGION_MULDRAUGH_ID);
-            regions[i].points["burglar"] = REGION_MULDRAUGH_SPAWNS;
+            regions[i].points[BURGLAR_ID] = REGION_MULDRAUGH_SPAWNS;
         elseif regions[i].name == REGION_WESTPOINT_ID then
             print('Injecting custom spawnpoints for the burglar profession in ' .. REGION_WESTPOINT_ID);
-            regions[i].points["burglar"] = REGION_WESTPOINT_SPAWNS;
+            regions[i].points[BURGLAR_ID] = REGION_WESTPOINT_SPAWNS;
         end
     end
 end
