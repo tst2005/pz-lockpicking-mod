@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.8.0
+
+- Re-enable custom spawn points for the Burglar profession ([Closes #5](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/5))
+
 ### Version 1.7.1
 
 - Fixed [#8](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/8) - Reduce amount of false positives for doors inside of houses
