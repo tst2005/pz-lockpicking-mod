@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.8.1
+
+- Fixed [#11](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/11) - Replaced outdated API calls
+
 ### Version 1.8.0
 
 - Re-enable custom spawn points for the Burglar profession ([Closes #5](https://github.com/cyberbobjr/pz-lockpicking-mod/issues/5))
