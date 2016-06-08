@@ -19,7 +19,7 @@ local function isValidWindow(window)
         return false;
     elseif window:IsOpen() and window:isPermaLocked() then
         return false;
-    elseif window:getBarricade() ~= 0 then
+    elseif window:isBarricaded() then
         return false;
     else
         return true;

@@ -12,7 +12,7 @@ require('luautils');
 local function isValidDoor(door, character)
     return not door:IsOpen()
             and door:isLocked()
-            and door:getBarricade() == 0
+            and not door:isBarricaded()
             and door:isExteriorDoor(character);
 end
 
