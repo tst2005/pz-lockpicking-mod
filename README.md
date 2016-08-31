@@ -2,7 +2,7 @@
 
 A Lockpicking Mod for [Project Zomboid](http://projectzomboid.com/) which allows you to quickly open locked doors.
 
-![preview](https://raw.githubusercontent.com/cyberbobjr/pz-lockpicking-mod/master/RMLockpickingMod/poster.png)
+![preview](https://raw.githubusercontent.com/tst2005/pz-lockpicking-mod/master/poster.png)
 
 ## Overview
 
